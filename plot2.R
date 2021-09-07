@@ -2,6 +2,7 @@
 
 # Load libraries.
 library(data.table)
+library(dplyr)
 library(lubridate)
 
 # Read and prepare data.
@@ -13,5 +14,8 @@ dt[,(3:8) := lapply(.SD, as.numeric), .SDcols = 3:8] # convert cols to numeric
 
 # Plot.
 png("plot2.png", width = 480, height = 480)
-
+with(dt, plot(Date_Time, Global_active_power, 
+              type = "l", 
+              xlab = "", 
+              ylab = "Global Active Power (kilowatts)"))
 dev.off()
